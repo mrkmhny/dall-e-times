@@ -2,8 +2,8 @@ const { initializeApp, applicationDefault, cert } = require('firebase-admin/app'
 const { getFirestore, Timestamp, FieldValue, Filter } = require('firebase-admin/firestore');
 const fetch = require('node-fetch');
 
-const firestoreServiceAccount = require('./private/dall-e-times.json');
-const newsIoAccount = require('./private/newsdata-io.json');
+const firestoreServiceAccount = require('../private/dall-e-times.json');
+const newsIoAccount = require('../private/newsdata-io.json');
 
 initializeApp({
   credential: cert(firestoreServiceAccount),
