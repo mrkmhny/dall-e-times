@@ -1,6 +1,5 @@
 // import Image from 'next/image'
 // import InputEchoer from '@/components/inputEchoer'
-require('dotenv').config()
 
 async function addToQueue() {
   const imgGenerationUrl = "https://api.openai.com/v1/images/generations"
