@@ -2,7 +2,7 @@
  * @jest-environment jsdom
  */
 import { fireEvent, render, screen } from '@testing-library/react'
-import {addToQueue} from './page'
+import {addToQueue} from '../helpers/addToQueue'
 
 jest.mock('node-fetch');
 import fetch from 'node-fetch';

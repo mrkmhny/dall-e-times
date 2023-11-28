@@ -1,6 +1,7 @@
 // import Image from 'next/image'
 // import InputEchoer from '@/components/inputEchoer'
 import fetch from 'node-fetch';
+import { addToQueue } from '@/helpers/addToQueue';
 
 const { initializeApp, applicationDefault, cert } = require('firebase-admin/app');
 const { getFirestore, Timestamp, FieldValue, Filter } = require('firebase-admin/firestore');
@@ -17,7 +18,7 @@ if (admin.apps.length === 0) {
 let headlines: any[] = []
 
 
-export async function getLatestNews() {
+async function getLatestNews() {
   const db = getFirestore();
     
   try {
@@ -37,33 +38,33 @@ export async function getLatestNews() {
   }
 }
 
-export async function addToQueue() {
-  const imgGenerationUrl = "https://api.openai.com/v1/images/generations"
-  const queueUrl = `https://zeplo.to/${imgGenerationUrl}?_token=${process.env.ZEPLO}`
+// export async function addToQueue() {
+//   const imgGenerationUrl = "https://api.openai.com/v1/images/generations"
+//   const queueUrl = `https://zeplo.to/${imgGenerationUrl}?_token=${process.env.ZEPLO}`
 
-  const prompt = `A spectacular image that contains content from all of the following headlines: ${headlines}`
+//   const prompt = `A spectacular image that contains content from all of the following headlines: ${headlines}`
 
-  console.log('prompt:', prompt)
+//   console.log('prompt:', prompt)
 
-  const queueRes = await fetch(queueUrl, { 
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${process.env.OPENAI}`
-    },
-    body: `{
-      "model": "dall-e-3",
-      "prompt": "${prompt}",
-      "n": 1,
-      "size": "1024x1024"
-    }`
-  })
+//   const queueRes = await fetch(queueUrl, { 
+//     method: 'POST',
+//     headers: {
+//       'Content-Type': 'application/json',
+//       'Authorization': `Bearer ${process.env.OPENAI}`
+//     },
+//     body: `{
+//       "model": "dall-e-3",
+//       "prompt": "${prompt}",
+//       "n": 1,
+//       "size": "1024x1024"
+//     }`
+//   })
 
-  return queueRes.json()
+//   return queueRes.json()
   
-}
+// }
 
-export async function getForwardedResponse(queueResponse: any) {
+async function getForwardedResponse(queueResponse: any) {
   try {
     const queueResponseUrl = `https://zeplo.to/requests/${queueResponse.id}/response.body?_token=${process.env.ZEPLO}`
     
@@ -88,7 +89,7 @@ async function getImgUrl() {
   //   ]
   // }
 
-  const queueResponse = await addToQueue()
+  const queueResponse = await addToQueue(headlines)
 
   console.log('queueResponse', queueResponse)
   
