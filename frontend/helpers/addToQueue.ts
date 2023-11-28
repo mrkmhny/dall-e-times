@@ -2,7 +2,7 @@ export async function addToQueue(headlines: any) {
     const imgGenerationUrl = "https://api.openai.com/v1/images/generations"
     const queueUrl = `https://zeplo.to/${imgGenerationUrl}?_token=${process.env.ZEPLO}`
   
-    const prompt = `A spectacular collage that contains content from all of the following headlines: ${headlines}`
+    const prompt = `A collage that contains content from all of the following headlines: ${headlines}`
   
     console.log('prompt:', prompt)
   

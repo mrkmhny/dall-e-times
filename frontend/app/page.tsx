@@ -10,6 +10,8 @@ const admin = require('firebase-admin');
 const firestoreServiceAccount = process.env.FIREBASE || '';
 
 if (admin.apps.length === 0) {
+  const firebase_private_key_b64 = Buffer.from(firestoreServiceAccount, 'base64');
+  const firebase_private_key = firebase_private_key_b64.toString('utf8');
   initializeApp({
     credential: cert(JSON.parse(firestoreServiceAccount)),
   });
