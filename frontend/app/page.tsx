@@ -7,13 +7,14 @@ const { initializeApp, applicationDefault, cert } = require('firebase-admin/app'
 const { getFirestore, Timestamp, FieldValue, Filter } = require('firebase-admin/firestore');
 const admin = require('firebase-admin');
 
-const firestoreServiceAccount = process.env.FIREBASE || '';
+let firestoreServiceAccount = process.env.FIREBASE || '';
+firestoreServiceAccount = firestoreServiceAccount ? firestoreServiceAccount.replace(/\\n/gm, "\n") : ''
 
 if (admin.apps.length === 0) {
-  const firebase_private_key_b64 = Buffer.from(firestoreServiceAccount, 'base64');
-  const firebase_private_key = firebase_private_key_b64.toString('utf8');
+  // const firebase_private_key_b64 = Buffer.from(firestoreServiceAccount, 'base64');
+  // const firebase_private_key = firebase_private_key_b64.toString('utf8');
   initializeApp({
-    credential: cert(JSON.parse(firestoreServiceAccount)),
+    credential: cert(JSON.parse(firestoreServiceAccount))
   });
 }
 
