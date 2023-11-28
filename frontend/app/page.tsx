@@ -7,14 +7,29 @@ const { initializeApp, applicationDefault, cert } = require('firebase-admin/app'
 const { getFirestore, Timestamp, FieldValue, Filter } = require('firebase-admin/firestore');
 const admin = require('firebase-admin');
 
-let firestoreServiceAccount = process.env.FIREBASE || '';
-firestoreServiceAccount = firestoreServiceAccount ? firestoreServiceAccount.replace(/\\n/gm, "\n") : ''
+// let firestoreServiceAccount = process.env.FIREBASE || '';
+// firestoreServiceAccount = firestoreServiceAccount ? firestoreServiceAccount.replace(/\\n/gm, "\n") : ''
+
+const firestoreServiceAccount = {
+  "type": "service_account",
+  "project_id": "dall-e-times",
+  "private_key_id": process.env.FIREBASE_PRIVATE_KEY_ID,
+  "private_key": process.env.FIREBASE_PRIVATE_KEY,
+  "client_email": process.env.FIREBASE_CLIENT_EMAIL,
+  "client_id": process.env.FIREBASE_CLIENT_ID,
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/dall-e-times-service-account%40dall-e-times.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
+
 
 if (admin.apps.length === 0) {
   // const firebase_private_key_b64 = Buffer.from(firestoreServiceAccount, 'base64');
   // const firebase_private_key = firebase_private_key_b64.toString('utf8');
   initializeApp({
-    credential: cert(JSON.parse(firestoreServiceAccount))
+    credential: cert(firestoreServiceAccount)
   });
 }
 
@@ -118,9 +133,8 @@ export default async function Home() {
   await getLatestNews()
   const data: any = await getImgUrl()
   console.log('data', data)
-  const imgUrl = data.data[0].url
-  console.log('imgUrl')
-  // const imgUrl = "myimg"
+  // const imgUrl = data.data[0].url
+  const imgUrl = "myimg"
   
 
   return (
