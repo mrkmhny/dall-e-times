@@ -133,8 +133,8 @@ export default async function Home() {
   await getLatestNews()
   const data: any = await getImgUrl()
   console.log('data', data)
-  // const imgUrl = data.data[0].url
-  const imgUrl = "myimg"
+  const imgUrl = data.data[0].url
+  // const imgUrl = "myimg"
   
 
   return (
