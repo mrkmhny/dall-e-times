@@ -8,6 +8,7 @@ export async function addToQueue(headlines: any) {
   
     const queueRes = await fetch(queueUrl, { 
       method: 'POST',
+      next: { revalidate: 86400 },
       headers: {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${process.env.OPENAI}`
