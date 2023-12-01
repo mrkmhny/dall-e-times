@@ -1,36 +1,21 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Dall-E Times
+
+Final project for CSCA 5028 Applications of Software Architecture for Big Data.
+
+My project is called "DALL-E Times" and is an experiment that combines the publicly
+available news data with the image generation capabilities of OpenAI's DALL-E AI system.
+The main idea is to take the top headlines from the day and use AI to generate images that
+"summarize" the news. The main goal is to build experience using OpenAIs APIs and also
+to experiment and see what kind of output it will produce given different types of headlines.
+This project is geared towards people who are interested in the rising capabilities of AI
+powered image generation. I believe this is a simple but unique idea that I haven't seen
+done before, and could be a fun way of chronicling the news over time. I expect the output
+will be quite bizarre but interesting!
 
 ## Getting Started
 
-First, run the development server:
+For security, the application will not run unless you have access to the private API keys.  If, however, you have those API keys, you can add them to your .env.local file and run the app as so....
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
